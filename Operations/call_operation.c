@@ -17,9 +17,9 @@ int cal_operation(char *operation, t_stack stack_a, t_stack stack_b)
 	if (operation == "rr")
 		return (rotate(stack_a, stack_b) && rotate(stack_b, stack_a));
 	if (operation == "rra")
-		return (reverse_rotate(stack_a, stack_b));
+		return (r_rotate(stack_a, stack_b));
 	if (operation == "rrb")
-		return (reverse_rotate(stack_b, stack_a));
+		return (r_rotate(stack_b, stack_a));
 	if (operation == "rrr")
-		return (reverse_rotate(stack_a, stack_b) && reverse_rotate(stack_b, stack_a));
+		return (r_rotate(stack_a, stack_b) && r_rotate(stack_b, stack_a));
 }

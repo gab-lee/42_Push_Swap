@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-int	reverse_rotate(t_stack **stack_a, t_stack **stack_b)
+int	r_rotate(t_stack **stack_a, t_stack **stack_b)
 {
 	t_stack	*last;
 	t_stack	*prev;
