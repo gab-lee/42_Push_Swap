@@ -6,11 +6,13 @@
 /*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 15:36:21 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/10/31 15:36:22 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/10/31 15:36:50 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int complex (t_stack **stack_a, t_lst_op **lst_operations)
+#include "push_swap.h"
+
+int	complex(t_stack **stack_a, t_lst_op **lst_operations)
 {
-	
+	return (0);
 }
