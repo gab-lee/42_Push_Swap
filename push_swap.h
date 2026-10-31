@@ -22,4 +22,13 @@ int		push(t_stack **stack_a, t_stack **stack_b);
 int		rotate(t_stack **stack_a, t_stack **stack_b);
 int		r_rotate(t_stack **stack_a, t_stack **stack_b);
 
+/* Algorithms */
+int		simple(t_stack **stack_a, t_lst_op **lst_operations);
+int		medium(t_stack **stack_a, t_lst_op **lst_operations);
+int		complex(t_stack **stack_a, t_lst_op **lst_operations);
+int		adaptive(t_stack **stack_a, t_lst_op **lst_operations);
+
+/* Utility */
+int		el_compare(t_stack *a, t_stack *b);
+
 #endif
