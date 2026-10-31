@@ -137,9 +137,9 @@ Both authors understand and can explain all parts of the code.
 1. Code operations
 int op(stack a, stack b) 
 - push - JR
-- swap - Gab
+- swap - Gab x
 - rotate - Jr
-- reverse - Gab
+- reverse - Gab x
 
 1. disorder
 int disorder(stack a) - Jr
