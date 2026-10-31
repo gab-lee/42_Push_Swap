@@ -30,5 +30,6 @@ int		adaptive(t_stack **stack_a, t_lst_op **lst_operations);
 
 /* Utility */
 int		el_compare(t_stack *a, t_stack *b);
+void	handle_error(void);
 
 #endif
