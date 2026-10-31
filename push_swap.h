@@ -16,4 +16,10 @@ typedef struct s_lst_op
 	struct s_lst_op	*next;
 }	t_lst_op;
 
+/* Operations */
+int		swap(t_stack **stack_a, t_stack **stack_b);
+int		push(t_stack **stack_a, t_stack **stack_b);
+int		rotate(t_stack **stack_a, t_stack **stack_b);
+int		r_rotate(t_stack **stack_a, t_stack **stack_b);
+
 #endif
