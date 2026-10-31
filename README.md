@@ -51,25 +51,95 @@ Target benchmarks: 100 numbers < 700 ops (excellent), 500 numbers < 5500 ops (ex
 .
 ├── Makefile
 ├── README.md
-├── push_swap.h              # types, prototypes
-├── push_swap.c              # main: argument parsing, strategy selection
-├── disorder_metric.c        # disorder computation
+├── push_swap.h                  # types, prototypes
+├── push_swap.c                  # main: argument parsing, strategy selection
 ├── algorithm/
-│   ├── simple.c             # O(n²) strategy
-│   ├── medium.c             # O(n√n) strategy
-│   ├── complex.c            # O(n log n) strategy
-│   └── adaptive.c           # picks a strategy from the disorder
+│   ├── simple.c                 # O(n²) strategy
+│   ├── medium.c                 # O(n√n) strategy
+│   ├── complex.c                # O(n log n) strategy
+│   ├── adaptive.c               # picks a strategy from the disorder
+│   └── disorder_metric.c        # disorder computation
 ├── Operations/
-│   ├── call_operation.c     # dispatches an operation by name
-│   ├── push.c               # pa, pb
-│   ├── swap.c               # sa, sb, ss
-│   ├── rotate.c             # ra, rb, rr
-│   └── reverse_rotate.c     # rra, rrb, rrr
+│   ├── call_operation.c         # dispatches an operation by name
+│   ├── push.c                   # pa, pb
+│   ├── swap.c                   # sa, sb, ss
+│   ├── rotate.c                 # ra, rb, rr
+│   └── r_rotate.c               # rra, rrb, rrr
 ├── utility/
-│   └── check_valid_stack.c  # input validation
+│   ├── check_valid_lst.c        # input validation
+│   ├── check_valid_strategy.c   # strategy flag validation
+│   ├── create_stack.c           # builds stack a from validated input
+│   ├── clear_stack.c            # frees a stack
+│   ├── clear_lst_op.c           # frees the operation list
+│   └── handle_error.c           # prints the error message
 └── libft/
-    └── ft_lst*.c            # linked-list helpers (t_list)
+    └── ft_lst*.c                # linked-list helpers (t_list)
 ```
+
+## Data structures
+
+| Type         | Fields                                  | Purpose                                      |
+|--------------|-----------------------------------------|----------------------------------------------|
+| `t_stack`    | `void *content`, `t_stack *next`        | One node of stack `a` or `b`                 |
+| `t_lst_op`   | `void *op`, `t_lst_op *next`            | One recorded operation (name, e.g. `"ra"`)   |
+
+## Function reference
+
+Return convention: `0` success, `-1` failure, unless stated otherwise.
+Status: **done** = implemented, **stub** = file exists but is empty or
+unfinished, **planned** = used by `push_swap.c` but not yet declared in the
+header.
+
+### `Operations/`
+
+Each operation takes the stack it acts on first and the other stack second, so
+the `b` variants and the double operations are just calls with the arguments
+swapped.
+
+| Function | File | Prototype | What it does | Operations | Status |
+|----------|------|-----------|--------------|------------|--------|
+| `swap` | `swap.c` | `int swap(t_stack **stack_a, t_stack **stack_b)` | Swaps the first two nodes of the first stack; does nothing with fewer than two | `sa`, `sb`, `ss` | done |
+| `push` | `push.c` | `int push(t_stack **stack_a, t_stack **stack_b)` | Moves the top of one stack onto the other | `pa`, `pb` | stub |
+| `rotate` | `rotate.c` | `int rotate(t_stack **stack_a, t_stack **stack_b)` | Moves the first node of the first stack to the bottom | `ra`, `rb`, `rr` | stub |
+| `r_rotate` | `r_rotate.c` | `int r_rotate(t_stack **stack_a, t_stack **stack_b)` | Moves the last node of the first stack to the top | `rra`, `rrb`, `rrr` | done |
+| `cal_operation` | `call_operation.c` | `int cal_operation(char *operation, t_stack **stack_a, t_stack **stack_b)` | Dispatches an operation name (`"pa"`, `"sb"`, `"rrr"`, ...) to the matching function above | all eleven | stub (compares strings with `==`, takes `t_stack` by value, not in header) |
+
+### `algorithm/`
+
+All strategies share one signature. They sort `stack_a` and append every
+operation they apply to `lst_operations`.
+
+| Function | File | Prototype | What it does | Complexity | Status |
+|----------|------|-----------|--------------|------------|--------|
+| `simple` | `simple.c` | `int simple(t_stack **stack_a, t_lst_op **lst_operations)` | Simple strategy | O(n²) | stub |
+| `medium` | `medium.c` | `int medium(t_stack **stack_a, t_lst_op **lst_operations)` | Medium strategy | O(n√n) | stub |
+| `complex` | `complex.c` | `int complex(t_stack **stack_a, t_lst_op **lst_operations)` | Complex strategy | O(n log n) | stub |
+| `adaptive` | `adaptive.c` | `int adaptive(t_stack **stack_a, t_lst_op **lst_operations)` | Measures the disorder, then calls `simple`, `medium` or `complex` | depends on disorder | stub |
+| `compute_disorder` | `disorder_metric.c` | `double compute_disorder(t_stack **stack_a)` | Fraction of out-of-order pairs, from 0.0 (sorted) to 1.0 (reversed) | O(n²) | stub (file empty; not in header) |
+
+### `utility/`
+
+| Function | File | Prototype | What it does | Status |
+|----------|------|-----------|--------------|--------|
+| `check_valid_lst` | `check_valid_lst.c` | `int check_valid_lst(int *stack_a)` | Validates the input list: only integers, within `int` range, no duplicates. `0` valid, `-1` invalid | stub |
+| `el_compare` | `el_compare.c` | `int el_compare(t_stack *a, t_stack *b)` | Compares the content of two nodes; positive if `a` is greater | planned (file removed; declared in header) |
+| `handle_error` | `handle_error.c` | `int handle_error(void)` | Writes the error message to stderr and returns `-1` | done |
+| `create_stack` | `create_stack.c` | called from `push_swap.c` | Builds stack `a` from the validated input | planned |
+| `clear_stack` | `clear_stack.c` | called from `push_swap.c` | Frees every node of a stack | planned |
+| `clear_lst_operations` | `clear_lst_op.c` | called from `push_swap.c` | Frees the operation list | planned |
+| `call_strategy` | `check_valid_strategy.c` | called from `push_swap.c` | Runs the strategy chosen by the flag, or errors on an unknown flag | planned |
+
+### Entry point
+
+| Function | File | What it does |
+|----------|------|--------------|
+| `main` | `push_swap.c` | Validates the input, builds stack `a`, runs the chosen strategy (default `adaptive`), frees everything and prints the error message on failure |
+
+### `libft/`
+
+Linked-list helpers on `t_list`: `ft_lstnew`, `ft_lstadd_front`,
+`ft_lstadd_back`, `ft_lstlast`, `ft_lstsize`, `ft_lstdelone`, `ft_lstclear`,
+`ft_lstiter`, `ft_lstmap`.
 
 ## Disorder metric
 
@@ -114,7 +184,7 @@ Selects a strategy from the measured disorder:
 | Operations: push, rotate               | JR     |
 | Operations: swap, reverse rotate       | Gab    |
 | Disorder metric                        | JR     |
-| Input validation (`check_valid`)       | Gab    |
+| Input validation (`check_valid_lst`)   | Gab    |
 | Simple and Medium algorithms           | JR     |
 | Complex algorithm                      | Gab    |
 | Operation list printing                | Gab    |
@@ -154,11 +224,6 @@ valid range, or duplicate values.
 0 successful
 -1 fail
 
-1. choose alogorithm (adaptive)
-if (!algo)
-	choose algo
-algo
-
 1. algorithims
 int algo (stack a, lst_operations)
 0 successful
@@ -167,12 +232,3 @@ int algo (stack a, lst_operations)
 - simple - Jr
 - Medium - Jr
 - Complex - Gab
-
-1. print_lst_op - Gab
-
-typedef struct *s_lst_op{
-
-	char *lst_op->op 
-	next
-
-} t_lst_op
