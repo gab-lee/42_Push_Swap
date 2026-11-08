@@ -196,6 +196,7 @@ Both authors understand and can explain all parts of the code.
 - Big-O / algorithmic complexity: https://en.wikipedia.org/wiki/Big_O_notation
 - Sorting algorithms (selection, insertion, radix, quick, merge): _add the references you used_
 - 42 push_swap subject (v1.2)
+- Radix Sort Algorithm: https://www.youtube.com/watch?v=XiuSW_mEn7g
 
 **AI usage:** _TBD — state which tasks and which parts of the project AI was used for._
 (So far: fixing includes/indentation in `libft/*.c` and `Operations/call_operation.c`.)
