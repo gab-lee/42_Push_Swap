@@ -6,14 +6,17 @@
 /*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 12:22:09 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/11/08 18:56:47 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/11/08 19:18:06 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
+static int	add_operation(char *operation, t_lst_op **lst_operations);
+
+int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b, t_lst_op **lst_operations)
 {
+	add_operation(operation, lst_operations);
 	if (!ft_strncmp(operation, "rra", 3))
 		return (r_rotate(stack_a, stack_b));
 	if (!ft_strncmp(operation, "rrb", 3))
@@ -35,4 +38,15 @@ int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
 	if (!ft_strncmp(operation, "rr", 2))
 		return (rotate(stack_a, stack_b) && rotate(stack_b, stack_a));
 	return (-1);
+}
+
+static int	add_operation(char *operation, t_lst_op **lst_operations)
+{
+	t_lst_op	*new;
+
+	new = ft_lstnew(operation);
+	if (!new)
+		return (-1);
+	ft_lstadd_back(lst_operations, new);
+	return (0);
 }
