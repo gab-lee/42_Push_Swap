@@ -59,8 +59,8 @@ Target benchmarks: 100 numbers < 700 ops (excellent), 500 numbers < 5500 ops (ex
 │   ├── complex.c                # O(n log n) strategy
 │   ├── adaptive.c               # picks a strategy from the disorder
 │   └── disorder_metric.c        # disorder computation
-├── Operations/
-│   ├── call_operation.c         # dispatches an operation by name
+├── Ops/
+│   ├── call_op.c         # dispatches an operation by name
 │   ├── push.c                   # pa, pb
 │   ├── swap.c                   # sa, sb, ss
 │   ├── rotate.c                 # ra, rb, rr
@@ -90,7 +90,7 @@ Status: **done** = implemented, **stub** = file exists but is empty or
 unfinished, **planned** = used by `push_swap.c` but not yet declared in the
 header.
 
-### `Operations/`
+### `Ops/`
 
 Each operation takes the stack it acts on first and the other stack second, so
 the `b` variants and the double operations are just calls with the arguments
@@ -102,19 +102,19 @@ swapped.
 | `push` | `push.c` | `int push(t_stack **stack_a, t_stack **stack_b)` | Moves the top of one stack onto the other | `pa`, `pb` | stub |
 | `rotate` | `rotate.c` | `int rotate(t_stack **stack_a, t_stack **stack_b)` | Moves the first node of the first stack to the bottom | `ra`, `rb`, `rr` | stub |
 | `r_rotate` | `r_rotate.c` | `int r_rotate(t_stack **stack_a, t_stack **stack_b)` | Moves the last node of the first stack to the top | `rra`, `rrb`, `rrr` | done |
-| `call_operation` | `call_operation.c` | `int call_operation(char *operation, t_stack **stack_a, t_stack **stack_b)` | Dispatches an operation name (`"pa"`, `"sb"`, `"rrr"`, ...) to the matching function above | all eleven | stub (compares strings with `==`, takes `t_stack` by value, not in header) |
+| `call_op` | `call_op.c` | `int call_op(char *operation, t_stack **stack_a, t_stack **stack_b)` | Dispatches an operation name (`"pa"`, `"sb"`, `"rrr"`, ...) to the matching function above | all eleven | stub (compares strings with `==`, takes `t_stack` by value, not in header) |
 
 ### `algorithm/`
 
 All strategies share one signature. They sort `stack_a` and append every
-operation they apply to `lst_operations`.
+operation they apply to `lst_op`.
 
 | Function | File | Prototype | What it does | Complexity | Status |
 |----------|------|-----------|--------------|------------|--------|
-| `simple` | `simple.c` | `int simple(t_stack **stack_a, t_lst_op **lst_operations)` | Simple strategy | O(n²) | stub |
-| `medium` | `medium.c` | `int medium(t_stack **stack_a, t_lst_op **lst_operations)` | Medium strategy | O(n√n) | stub |
-| `complex` | `complex.c` | `int complex(t_stack **stack_a, t_lst_op **lst_operations)` | Complex strategy | O(n log n) | stub |
-| `adaptive` | `adaptive.c` | `int adaptive(t_stack **stack_a, t_lst_op **lst_operations)` | Measures the disorder, then calls `simple`, `medium` or `complex` | depends on disorder | stub |
+| `simple` | `simple.c` | `int simple(t_stack **stack_a, t_lst_op **lst_op)` | Simple strategy | O(n²) | stub |
+| `medium` | `medium.c` | `int medium(t_stack **stack_a, t_lst_op **lst_op)` | Medium strategy | O(n√n) | stub |
+| `complex` | `complex.c` | `int complex(t_stack **stack_a, t_lst_op **lst_op)` | Complex strategy | O(n log n) | stub |
+| `adaptive` | `adaptive.c` | `int adaptive(t_stack **stack_a, t_lst_op **lst_op)` | Measures the disorder, then calls `simple`, `medium` or `complex` | depends on disorder | stub |
 | `compute_disorder` | `disorder_metric.c` | `double compute_disorder(t_stack **stack_a)` | Fraction of out-of-order pairs, from 0.0 (sorted) to 1.0 (reversed) | O(n²) | stub (file empty; not in header) |
 
 ### `utility/`
@@ -126,7 +126,7 @@ operation they apply to `lst_operations`.
 | `handle_error` | `handle_error.c` | `int handle_error(void)` | Writes the error message to stderr and returns `-1` | done |
 | `create_stack` | `create_stack.c` | called from `push_swap.c` | Builds stack `a` from the validated input | planned |
 | `clear_stack` | `clear_stack.c` | called from `push_swap.c` | Frees every node of a stack | planned |
-| `clear_lst_operations` | `clear_lst_op.c` | called from `push_swap.c` | Frees the operation list | planned |
+| `clear_lst_op` | `clear_lst_op.c` | called from `push_swap.c` | Frees the operation list | planned |
 | `call_strategy` | `check_valid_strategy.c` | called from `push_swap.c` | Runs the strategy chosen by the flag, or errors on an unknown flag | planned |
 
 ### Entry point
@@ -199,7 +199,7 @@ Both authors understand and can explain all parts of the code.
 - Radix Sort Algorithm: https://www.youtube.com/watch?v=XiuSW_mEn7g
 
 **AI usage:** _TBD — state which tasks and which parts of the project AI was used for._
-(So far: fixing includes/indentation in `libft/*.c` and `Operations/call_operation.c`.)
+(So far: fixing includes/indentation in `libft/*.c` and `Ops/call_op.c`.)
 
 ---
 
@@ -226,7 +226,7 @@ valid range, or duplicate values.
 -1 fail
 
 1. algorithims
-int algo (stack a, lst_operations)
+int algo (stack a, lst_op)
 0 successful
 -1 fail
 

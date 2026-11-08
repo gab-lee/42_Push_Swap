@@ -15,7 +15,7 @@
 int	main(int argc, char *argv)
 {
 	t_stack		*stack_a;
-	t_lst_op	*lst_operations;
+	t_lst_op	*lst_op;
 	int			*lst_a;
 	int			res;
 
@@ -28,11 +28,11 @@ int	main(int argc, char *argv)
 	if (!stack_a)
 		return (handle_error());
 	if (argc == 2)
-		res = call_strategy(argv[1], &stack_a, &lst_operations);
+		res = call_strategy(argv[1], &stack_a, &lst_op);
 	else
-		res = adaptive(&stack_a, &lst_operations);
+		res = adaptive(&stack_a, &lst_op);
 	clear_stack(stack_a);
-	clear_lst_operations(lst_operations);
+	clear_lst_op(lst_op);
 	if (res == -1)
 		return (handle_error());
 	return (0);

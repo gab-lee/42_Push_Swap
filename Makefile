@@ -8,11 +8,11 @@ LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS		= push_swap.c \
-			  Operations/call_operation.c \
-			  Operations/push.c \
-			  Operations/r_rotate.c \
-			  Operations/rotate.c \
-			  Operations/swap.c \
+			  Ops/call_op.c \
+			  Ops/push.c \
+			  Ops/r_rotate.c \
+			  Ops/rotate.c \
+			  Ops/swap.c \
 			  algorithm/adaptive.c \
 			  algorithm/complex.c \
 			  algorithm/disorder_metric.c \

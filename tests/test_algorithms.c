@@ -1,10 +1,10 @@
 #include "test_utils.h"
 
-int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b);
+int	call_op(char *op, t_stack **stack_a, t_stack **stack_b);
 
-typedef int	(*t_algo)(t_stack **stack_a, t_lst_op **lst_operations);
+typedef int	(*t_algo)(t_stack **stack_a, t_lst_op **lst_op);
 
-/* Replays the recorded operations (op holds the operation name as a string)
+/* Replays the recorded ops (op holds the op name as a string)
 ** on a fresh copy of the input and checks that a ends up sorted, b empty. */
 static int	replay_sorts(const int *values, int n, t_lst_op *ops)
 {
@@ -16,7 +16,7 @@ static int	replay_sorts(const int *values, int n, t_lst_op *ops)
 	b = NULL;
 	while (ops)
 	{
-		call_operation((char *)ops->op, &a, &b);
+		call_op((char *)ops->op, &a, &b);
 		ops = ops->next;
 	}
 	ok = stack_is_sorted(a) && stack_size(a) == n && !b;
