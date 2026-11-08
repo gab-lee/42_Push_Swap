@@ -1,6 +1,6 @@
 #include "test_utils.h"
 
-int	cal_operation(char *operation, t_stack **stack_a, t_stack **stack_b);
+int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b);
 
 typedef int	(*t_algo)(t_stack **stack_a, t_lst_op **lst_operations);
 
@@ -16,7 +16,7 @@ static int	replay_sorts(const int *values, int n, t_lst_op *ops)
 	b = NULL;
 	while (ops)
 	{
-		cal_operation((char *)ops->op, &a, &b);
+		call_operation((char *)ops->op, &a, &b);
 		ops = ops->next;
 	}
 	ok = stack_is_sorted(a) && stack_size(a) == n && !b;

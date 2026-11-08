@@ -6,13 +6,13 @@
 /*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/11/08 12:22:09 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/11/08 12:22:26 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/11/08 18:56:47 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	cal_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
+int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
 {
 	if (!ft_strncmp(operation, "rra", 3))
 		return (r_rotate(stack_a, stack_b));

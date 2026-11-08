@@ -2,7 +2,7 @@
 
 /* Operations are dispatched by name through call_operation.c.
 ** The tests expect the signature the operations themselves use (t_stack **). */
-int	cal_operation(char *operation, t_stack **stack_a, t_stack **stack_b);
+int	call_operation(char *operation, t_stack **stack_a, t_stack **stack_b);
 
 static int	check_op(const char *op, const int *a_in, int na, const int *b_in,
 		int nb, const int *a_out, int na_out, const int *b_out, int nb_out)
@@ -14,7 +14,7 @@ static int	check_op(const char *op, const int *a_in, int na, const int *b_in,
 
 	a = build_stack(a_in, na);
 	b = build_stack(b_in, nb);
-	cal_operation((char *)op, &a, &b);
+	call_operation((char *)op, &a, &b);
 	ok = stack_equals(a, a_out, na_out) && stack_equals(b, b_out, nb_out);
 	free_stack(a);
 	free_stack(b);
