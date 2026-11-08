@@ -14,24 +14,25 @@
 
 int	cal_operation(char *operation, t_stack **stack_a, t_stack **stack_b)
 {
-	if (operation == "pa")
-		return (push(stack_a, stack_b));
-	if (operation == "pb")
-		return (push(stack_b, stack_a));
-	if (operation == "sa")
-		return (swap(stack_a, stack_b));
-	if (operation == "sb")
-		return (swap(stack_b, stack_a));
-	if (operation == "ra")
-		return (rotate(stack_a, stack_b));
-	if (operation == "rb")
-		return (rotate(stack_b, stack_a));
-	if (operation == "rr")
-		return (rotate(stack_a, stack_b) && rotate(stack_b, stack_a));
-	if (operation == "rra")
+	if (!ft_strncmp(operation, "rra", 3))
 		return (r_rotate(stack_a, stack_b));
-	if (operation == "rrb")
+	if (!ft_strncmp(operation, "rrb", 3))
 		return (r_rotate(stack_b, stack_a));
-	if (operation == "rrr")
+	if (!ft_strncmp(operation, "rrr", 3))
 		return (r_rotate(stack_a, stack_b) && r_rotate(stack_b, stack_a));
+	if (!ft_strncmp(operation, "pa", 2))
+		return (push(stack_a, stack_b));
+	if (!ft_strncmp(operation, "pb", 2))
+		return (push(stack_b, stack_a));
+	if (!ft_strncmp(operation, "sa", 2))
+		return (swap(stack_a, stack_b));
+	if (!ft_strncmp(operation, "sb", 2))
+		return (swap(stack_b, stack_a));
+	if (!ft_strncmp(operation, "ra", 2))
+		return (rotate(stack_a, stack_b));
+	if (!ft_strncmp(operation, "rb", 2))
+		return (rotate(stack_b, stack_a));
+	if (!ft_strncmp(operation, "rr", 2))
+		return (rotate(stack_a, stack_b) && rotate(stack_b, stack_a));
+	return (-1);
 }
