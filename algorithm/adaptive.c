@@ -14,9 +14,9 @@
 
 int	adaptive(t_stack **stack_a, t_lst_op **lst_operations)
 {
-	int	disorder;
+	double	disorder;
 
-	disorder = 0; //to update once disorder metric created
+	disorder = 0.0; //to update once disorder metric created
 	if (disorder < 0.2)
 		return (call_strategy("simple", stack_a, lst_operations));
 	if (disorder >= 0.2 && disorder < 0.5)
