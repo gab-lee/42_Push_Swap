@@ -102,7 +102,7 @@ swapped.
 | `push` | `push.c` | `int push(t_stack **stack_a, t_stack **stack_b)` | Moves the top of one stack onto the other | `pa`, `pb` | stub |
 | `rotate` | `rotate.c` | `int rotate(t_stack **stack_a, t_stack **stack_b)` | Moves the first node of the first stack to the bottom | `ra`, `rb`, `rr` | stub |
 | `r_rotate` | `r_rotate.c` | `int r_rotate(t_stack **stack_a, t_stack **stack_b)` | Moves the last node of the first stack to the top | `rra`, `rrb`, `rrr` | done |
-| `cal_operation` | `call_operation.c` | `int cal_operation(char *operation, t_stack **stack_a, t_stack **stack_b)` | Dispatches an operation name (`"pa"`, `"sb"`, `"rrr"`, ...) to the matching function above | all eleven | stub (compares strings with `==`, takes `t_stack` by value, not in header) |
+| `call_operation` | `call_operation.c` | `int call_operation(char *operation, t_stack **stack_a, t_stack **stack_b)` | Dispatches an operation name (`"pa"`, `"sb"`, `"rrr"`, ...) to the matching function above | all eleven | stub (compares strings with `==`, takes `t_stack` by value, not in header) |
 
 ### `algorithm/`
 
