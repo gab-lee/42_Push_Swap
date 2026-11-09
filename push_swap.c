@@ -6,7 +6,7 @@
 /*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 16:13:26 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/10/31 16:34:03 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/11/09 10:11:37 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ int	main(int argc, char *argv)
 		res = call_strategy(argv[1], &stack_a, &lst_op);
 	else
 		res = adaptive(&stack_a, &lst_op);
-	clear_stack(stack_a);
-	clear_lst_op(lst_op);
+	ft_lstclear(stack_a, del);
+	ft_lstclear(lst_op, del);
 	if (res == -1)
 		return (handle_error());
 	return (0);
