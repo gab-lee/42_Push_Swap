@@ -6,7 +6,7 @@
 /*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 15:36:21 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/11/09 09:29:12 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/11/09 09:50:02 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 static int	solve_complex(t_stack **stack_a, t_lst_op **lst_op, int bit_index);
 static int	mv_zero_atob(t_stack **stack_a, t_stack **stack_b, t_lst_op **lst_op, int bit_index);
 static int	mv_zero_btoa(t_stack **stack_a, t_stack **stack_b, t_lst_op **lst_op);
-static void	del(void *content);
 
 int	complex(t_stack **stack_a, t_lst_op **lst_op)
 {
@@ -100,9 +99,4 @@ static int mv_zero_btoa(t_stack **stack_a, t_stack **stack_b, t_lst_op **lst_op)
 			return (-1);
 	}
 	return (0);
-}
-
-static void	del(void *content)
-{
-	(void)content;
 }
