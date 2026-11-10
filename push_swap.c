@@ -6,7 +6,7 @@
 /*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 16:13:26 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/11/09 10:20:07 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/11/09 10:38:50 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char *argv)
 {
 	t_stack		*stack_a;
 	t_lst_op	*lst_op;
+	t_bench		*bench;
 	int			*lst_a;
 	int			res;
 

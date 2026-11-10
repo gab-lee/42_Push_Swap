@@ -8,11 +8,11 @@ LIBFT_DIR	= libft
 LIBFT		= $(LIBFT_DIR)/libft.a
 
 SRCS		= push_swap.c \
-			  Ops/call_op.c \
-			  Ops/push.c \
-			  Ops/r_rotate.c \
-			  Ops/rotate.c \
-			  Ops/swap.c \
+			  operations/call_op.c \
+			  operations/push.c \
+			  operations/r_rotate.c \
+			  operations/rotate.c \
+			  operations/swap.c \
 			  algorithm/adaptive.c \
 			  algorithm/complex.c \
 			  algorithm/disorder_metric.c \
@@ -24,6 +24,7 @@ SRCS		= push_swap.c \
 			  utility/clear_lst_op.c \
 			  utility/clear_stack.c \
 			  utility/create_stack.c \
+			  utility/del.c \
 			  utility/handle_error.c
 
 OBJS		= $(SRCS:.c=.o)
