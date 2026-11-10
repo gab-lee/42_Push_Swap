@@ -3,34 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   check_valid_lst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gabrlee <gabrlee@student.42singapore.sg    +#+  +:+       +#+        */
+/*   By: gabrlee <gabrlee@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/31 11:25:34 by gabrlee           #+#    #+#             */
-/*   Updated: 2026/10/31 16:17:54 by gabrlee          ###   ########.fr       */
+/*   Updated: 2026/11/07 11:53:34 by gabrlee          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int check_valid_lst(int *stack_a)
+int	check_valid_lst(int *lst_a)
 {
-	if (!(*stack_a))
-		return (-1);
-	cur = *stack_a;
-	while (cur)
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i, lst_a[i])
 	{
-		while(next)
-		cur = cur->next;
-	}	
+		if (!ft_isdigit(lst_a[i]))
+			return (-1);
+		j = i;
+		while (++j, lst_a[j])
+		{
+			if (lst_a[i] == lst_a[j])
+				return (-1);
+		}
+	}
+	return (0);
 }
-- check stack a is valid list of integers > 1
-- if number 1 -> 0 (no sorting required)
-- if invalid -> -1
-not integers, integers outside the
-valid range, or duplicate values.
-0 successful
--1 fail
-
-
-Errors include, for example: arguments that are not integers, integers outside the
-valid range, or duplicate values.
